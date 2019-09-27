@@ -4,6 +4,14 @@ document.body.onload = setBoard;
 var app = document.getElementById('app')
 var numberClicks, arr, status;
 
+function reset() {
+   var resetBtn = document.createElement('p');
+   resetBtn.innerHTML = "Reset";
+   resetBtn.className = "btn btn-dark btn-lg m-4 col-6";
+   resetBtn.addEventListener('click', setBoard);
+   app.appendChild(resetBtn);
+}
+
 function checkWin() {
    // console.log('check if someone wins')
    // console.log(arr);
@@ -22,13 +30,19 @@ function checkWin() {
       var a = checkVal(wins[i][0], wins[i][1], wins[i][2]);
       if (a) {
          status = "win";
-         alert("Player " + a + " wins!");
+         $('#alert').show();
+         document.getElementById('alert').innerHTML = "Player " + a + " wins!";
+         arr.fill(3);
+         reset();
          break;
       }
    }
    // no winner, check for tie
    if (numberClicks == 10 && status == "") {
-      alert("Cat game");
+      $('#alert').show();
+      document.getElementById('alert').innerHTML = "This game is Cat!";
+      arr.fill(3);
+      reset();
    }
 
 }
@@ -43,12 +57,12 @@ function checkVal(a, b, c) {
    if (sum == 3) {
       return 1;
    }
+
    if (sum == 6) {
       return 2;
    }
    return 0;
 }
-
 
 function marker() {
    // console.log('functioning', numberClicks)
@@ -58,18 +72,15 @@ function marker() {
       numberClicks++;
       if (numberClicks % 2) {
          this.innerHTML = 'O';
-         document.getElementById('playTurn').innerHTML = "Player 2's Turn (O)";
+         document.getElementById('playTurn').innerHTML = "Player 1's Turn (X)";
          arr[idx] = 2;
       } else {
          this.innerHTML = 'X';
-         document.getElementById('playTurn').innerHTML = "Player 1's Turn (X)";
+         document.getElementById('playTurn').innerHTML = "Player 2's Turn (O)";
          arr[idx] = 1;
       }
       checkWin();
    }
-   // console.log(idx);
-   // console.log(q);
-   console.log(arr);
 }
 
 function setBoard() {
@@ -90,6 +101,13 @@ function setBoard() {
    playerTurn.id = "playTurn";
    app.appendChild(playerTurn);
 
+   var alertEnd = document.createElement('div');
+   alertEnd.className = "alert alert-info alert-dismissible";
+   alertEnd.id = "alert";
+   // alertEnd.innerHTML = "Player" + a + "wins!";
+   app.appendChild(alertEnd);
+   $('#alert').hide();
+
    // Create Board Container
    var newDiv = document.createElement('div');
    newDiv.className = "container";
@@ -100,6 +118,7 @@ function setBoard() {
       for (let j = 0; j < 3; j++) {
          var colDiv = document.createElement('div');
          colDiv.className = "col-3 border btn-lg";
+         colDiv.setAttribute("style", "height: 100px");
          colDiv.id = i + "-" + j;
          colDiv.addEventListener('click', marker);
          rowDiv.appendChild(colDiv);
@@ -107,12 +126,6 @@ function setBoard() {
       newDiv.appendChild(rowDiv);
    }
    app.appendChild(newDiv);
-
-   var resetBtn = document.createElement('p');
-   resetBtn.innerHTML = "Reset";
-   resetBtn.className = "btn btn-dark btn-lg m-4 col-6";
-   resetBtn.addEventListener('click', setBoard);
-   app.appendChild(resetBtn);
 }
 
 

@@ -5,4 +5,7 @@ body {
 .col-3.border.btn-lg {
    background-color: #C6CCB2;
    padding-bottom: 18%;
+   border-radius: 0;
+   font-size: 4em;
+   text-align: center;
 }
