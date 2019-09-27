@@ -92,12 +92,12 @@ function setBoard() {
 
    var title = document.createElement('p');
    title.innerHTML = "Tic-Tac-Toe";
-   title.className = "h1 text-center p-4";
+   title.className = "h2 text-center m-1 p-3";
    app.appendChild(title);
 
    var playerTurn = document.createElement('p');
    playerTurn.innerHTML = "Player 1's Turn (X)";
-   playerTurn.className = "h3 text-center";
+   playerTurn.className = "h4 text-center";
    playerTurn.id = "playTurn";
    app.appendChild(playerTurn);
 
