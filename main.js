@@ -7,7 +7,7 @@ var numberClicks, arr, status;
 function reset() {
    var resetBtn = document.createElement('p');
    resetBtn.innerHTML = "Reset";
-   resetBtn.className = "btn btn-dark btn-lg m-4 col-6";
+   resetBtn.className = "btn btn-dark btn-lg m-1 col-6";
    resetBtn.addEventListener('click', setBoard);
    app.appendChild(resetBtn);
 }
@@ -101,12 +101,7 @@ function setBoard() {
    playerTurn.id = "playTurn";
    app.appendChild(playerTurn);
 
-   var alertEnd = document.createElement('div');
-   alertEnd.className = "alert alert-info alert-dismissible";
-   alertEnd.id = "alert";
-   // alertEnd.innerHTML = "Player" + a + "wins!";
-   app.appendChild(alertEnd);
-   $('#alert').hide();
+   
 
    // Create Board Container
    var newDiv = document.createElement('div');
@@ -126,6 +121,12 @@ function setBoard() {
       newDiv.appendChild(rowDiv);
    }
    app.appendChild(newDiv);
+
+   var alertEnd = document.createElement('div');
+   alertEnd.className = "alert alert-info alert-dismissible m-2";
+   alertEnd.id = "alert";
+   app.appendChild(alertEnd);
+   $('#alert').hide();
 }
 
 

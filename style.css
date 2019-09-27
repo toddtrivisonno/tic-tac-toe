@@ -2,6 +2,13 @@ body {
    background-color: #96A08B;
 }
 
+body:before {
+   content: "";
+   position: fixed; top: 0; bottom: 0; left:0; right:0;
+   border:20px solid #C6CCB2;
+   padding: 1em;
+}
+
 .col-3.border.btn-lg {
    background-color: #C6CCB2;
    padding-bottom: 18%;
